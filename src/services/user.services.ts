@@ -9,7 +9,12 @@ export  class UserService {
   async findAll(): Promise<User[]> {
     return await this.userRepository.findAll<User>();
   }
-  async findByUsernameAndPassword(): Promise<User> {
-    return null;
+  async findByUsernameAndPassword(user: User): Promise<User> {
+    return await this.userRepository.findOne<User>({
+      where: {
+        username: user.username,
+        password: user.password,
+      },
+    });
   }
 }
