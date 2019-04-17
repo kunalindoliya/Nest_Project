@@ -18,14 +18,30 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return await this.userRepository.findAll<User>();
   }
-  async findByUsernameAndPassword(user: User): Promise<User> {
-    bcrypt.hash(user.password, 10).then(hash => {
-      return this.userRepository.findOne<User>({
-        where: {
-          username: user.username,
-          password: user.password,
-        },
+  async findByUsernameAndPassword(user: User): Promise<object> {
+    // returning object of type {user: User, error: error}
+    return new Promise(async (resolve, reject) => {
+      await bcrypt.hash(user.password, 10).then(hash => {
+         const findUser = this.userRepository.findOne<User>({
+          where: {
+            username: user.username,
+            password: user.password,
+          },
+        }).then(fuser => {
+          // use bcrypt compare here
+          resolve({
+            user: fuser,
+          });
+         }).catch(error => {
+           reject({
+             error,
+           });
+         });
+      }).catch(err => {
+        reject({
+          error: err,
+        });
       });
-    }).catch(err => console.log(err));
+    });
   }
 }
