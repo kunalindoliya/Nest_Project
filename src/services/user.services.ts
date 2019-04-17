@@ -22,24 +22,26 @@ export class UserService {
     // returning object of type {user: User, error: error}
     return new Promise(async (resolve, reject) => {
       await bcrypt.hash(user.password, 10).then(hash => {
-         const findUser = this.userRepository.findOne<User>({
+        console.log(hash);
+        const findUser = this.userRepository.findOne<User>({
           where: {
-            username: user.username,
+            username: user.email,
             password: user.password,
           },
         }).then(fuser => {
-          // use bcrypt compare here
-          resolve({
-            user: fuser,
+          bcrypt.compare(user.password, fuser.password).then(res => {
+            resolve({
+              user: fuser,
+            });
+          }).catch(error => {
+            reject({
+              error,
+            });
           });
-         }).catch(error => {
-           reject({
-             error,
-           });
-         });
-      }).catch(err => {
-        reject({
-          error: err,
+        }).catch(err => {
+          reject({
+            error: err,
+          });
         });
       });
     });

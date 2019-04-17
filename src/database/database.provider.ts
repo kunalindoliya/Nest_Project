@@ -15,7 +15,6 @@ export const databaseProviders = [
         database: 'w8mediaworks',
       });
       sequelize.addModels([User]);
-      // await sequelize.sync();
       return sequelize;
     },
   },

@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from '../services/user.services';
 import { User } from '../models/user';
-import * as bcrypt from 'bcrypt';
+import * as Puid from 'puid';
 
 @Controller()
 export class UserController {
@@ -18,11 +18,12 @@ export class UserController {
   postLogin(@Body() user: User) {
    this.userService.findByUsernameAndPassword(user).then(user => {
      console.log(user);
-   }).catch();
+   }).catch(err => console.log(err));
   }
 
   @Post('/addUser')
   postAddUser(@Body() user: User) {
+    console.log(Puid.generate());
     this.userService.adduser(user);
   }
 }
