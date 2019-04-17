@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from '../services/user.services';
 import { User } from '../models/user';
+// @ts-ignore
 import * as Puid from 'puid';
+
+const puid = new Puid();
 
 @Controller()
 export class UserController {
@@ -16,8 +19,8 @@ export class UserController {
   }
   @Post('/login')
   postLogin(@Body() user: User) {
-   this.userService.findByUsernameAndPassword(user).then(user => {
-     console.log(user);
+   this.userService.findByUsernameAndPassword(user).then((fuser) => {
+     console.log(puid.generate());
    }).catch(err => console.log(err));
   }
 
