@@ -1,5 +1,4 @@
-import { Column, Model, Table, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
-
+import { AutoIncrement, Column, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
 @Table
 export class User extends Model<User> {
