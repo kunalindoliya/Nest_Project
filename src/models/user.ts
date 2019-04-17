@@ -1,5 +1,5 @@
 import { Column, Model, Table, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
-import { PrimaryGeneratedColumn } from 'typeorm';
+
 
 @Table
 export class User extends Model<User> {

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { UserService } from '../services/user.services';
 import { User } from '../models/user';
+import * as bcrypt from 'bcrypt';
 
 @Controller()
 export class UserController {
@@ -15,7 +16,9 @@ export class UserController {
   }
   @Post('/login')
   postLogin(@Body() user: User) {
-    return this.userService.findByUsernameAndPassword(user);
+   this.userService.findByUsernameAndPassword(user).then(user => {
+     console.log(user);
+   }).catch();
   }
 
   @Post('/addUser')
