@@ -6,6 +6,11 @@ export  class UserService {
   constructor(
     @Inject('USER_REPOSITORY') private readonly userRepository: typeof User,
   ) {}
+
+  async adduser(user: User): Promise<User> {
+    console.log(user.username);
+    return await this.userRepository.create(user);
+  }
   async findAll(): Promise<User[]> {
     return await this.userRepository.findAll<User>();
   }

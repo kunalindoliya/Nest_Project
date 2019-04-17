@@ -6,20 +6,20 @@ import { User } from '../models/user';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get('/login')
-  @Render('login')
   getLogin() {
     // Render login page
   }
   @Get('/data')
   getUsers() {
-   this.userService.findAll().then((rows) => {
-      console.log(rows);
-   }).catch(err => console.log(err));
+    return this.userService.findAll();
   }
   @Post('/login')
   postLogin(@Body() user: User) {
-    this.userService.findByUsernameAndPassword(user).then((rows) => {
-      console.log(rows);
-    }).catch(err => console.log(err));
+    return this.userService.findByUsernameAndPassword(user);
+  }
+
+  @Post('/addUser')
+  postAddUser(@Body() user: User) {
+    this.userService.adduser(user);
   }
 }
