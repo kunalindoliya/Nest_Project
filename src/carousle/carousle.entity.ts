@@ -1,4 +1,4 @@
-import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
 import { Section } from 'src/section/section.entity';
 
 
@@ -17,7 +17,7 @@ export class Carousle extends Model<Carousle> {
   @Column
   carousleTitle: string;
 
-  @Column
+  @Column(DataType.TEXT)
   description: string;
 
   @ForeignKey(()=>Section)
