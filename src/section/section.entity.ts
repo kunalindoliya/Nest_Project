@@ -1,5 +1,6 @@
-import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, BelongsTo, ForeignKey } from 'sequelize-typescript';
+import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, BelongsTo, ForeignKey, HasMany, HasOne } from 'sequelize-typescript';
 import { Page } from 'src/page/page.entity';
+import { Carousle } from 'src/carousle/carousle.entity';
 
 
 @Table
@@ -23,6 +24,9 @@ export class Section extends Model<Section> {
 
   @BelongsTo(()=>Page)
   page:Page;
+
+  @HasMany(()=>Carousle)
+  carousle:Carousle[];
 
   @CreatedAt
   createdAt;

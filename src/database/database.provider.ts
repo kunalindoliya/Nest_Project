@@ -2,6 +2,9 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from 'src/user/user.entity';
 import { Page } from 'src/page/page.entity';
 import { Section } from 'src/section/section.entity';
+import { Matrix } from 'src/matrix/matrix.entity';
+import { Carousle } from 'src/carousle/carousle.entity';
+import { Files } from 'src/files/files.entity';
 
 export const databaseProviders = [
   {
@@ -16,7 +19,7 @@ export const databaseProviders = [
         password: '',
         database: 'w8mediaworks',
       });
-      sequelize.addModels([User,Page,Section]);
+      sequelize.addModels([User,Page,Section,Carousle,Matrix,Files]);
       await sequelize.sync({force:true});
       return sequelize;
     },

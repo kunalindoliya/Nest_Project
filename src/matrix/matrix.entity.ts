@@ -1,0 +1,42 @@
+// the row below carousle
+import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Section } from 'src/section/section.entity';
+import { Files } from 'src/files/files.entity';
+
+@Table
+export class Matrix extends Model<Matrix> {
+  @AutoIncrement
+  @Unique
+  @Column
+  index: number;
+
+  @PrimaryKey
+  @Unique
+  @Column
+  id: string;
+
+  @Column
+  elementTitle: string;
+
+  @Column
+  description: string;
+
+  @ForeignKey(() => Section)
+  @Column
+  sectionId: string;
+
+  @BelongsTo(() => Section)
+  section: Section;
+
+  @HasMany(() => Files)
+  files: Files[];
+
+  @CreatedAt
+  createdAt;
+
+  @UpdatedAt
+  updatedAt;
+
+  @DeletedAt
+  deletedAt;
+}
