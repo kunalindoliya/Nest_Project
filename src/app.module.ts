@@ -7,9 +7,10 @@ import { SectionModule } from './section/section.module';
 import { CarousleModule } from './carousle/carousle.module';
 import { MatrixModule } from './matrix/matrix.module';
 import { FilesModule } from './files/files.module';
+import { FullRangeModule } from './full-range/full-range.module';
 
 @Module({
-  imports: [UserModule, PageModule, SectionModule, CarousleModule, MatrixModule, FilesModule],
+  imports: [UserModule, PageModule, SectionModule, CarousleModule, MatrixModule, FilesModule, FullRangeModule],
   controllers: [AppController],
   providers: [AppService],
 })

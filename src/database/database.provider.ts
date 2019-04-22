@@ -5,6 +5,7 @@ import { Section } from 'src/section/section.entity';
 import { Matrix } from 'src/matrix/matrix.entity';
 import { Carousle } from 'src/carousle/carousle.entity';
 import { Files } from 'src/files/files.entity';
+import { FullRange } from 'src/full-range/full-range.entity';
 
 export const databaseProviders = [
   {
@@ -19,7 +20,7 @@ export const databaseProviders = [
         password: '',
         database: 'w8mediaworks',
       });
-      sequelize.addModels([User,Page,Section,Carousle,Matrix,Files]);
+      sequelize.addModels([User,Page,Section,Carousle,Matrix,Files,FullRange]);
       await sequelize.sync({force:true});
       return sequelize;
     },
