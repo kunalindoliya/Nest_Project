@@ -28,8 +28,12 @@ export class Matrix extends Model<Matrix> {
   @BelongsTo(() => Section)
   section: Section;
 
-  @HasMany(() => Files)
-  files: Files[];
+  @ForeignKey(()=>Files)
+  @Column
+  fileId:string
+
+  @BelongsTo(()=>Files)
+  file: Files;
 
   @CreatedAt
   createdAt;

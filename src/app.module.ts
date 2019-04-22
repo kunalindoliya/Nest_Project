@@ -8,9 +8,10 @@ import { CarousleModule } from './carousle/carousle.module';
 import { MatrixModule } from './matrix/matrix.module';
 import { FilesModule } from './files/files.module';
 import { FullRangeModule } from './full-range/full-range.module';
+import { VideoModule } from './video/video.module';
 
 @Module({
-  imports: [UserModule, PageModule, SectionModule, CarousleModule, MatrixModule, FilesModule, FullRangeModule],
+  imports: [UserModule, PageModule, SectionModule, CarousleModule, MatrixModule, FilesModule, FullRangeModule, VideoModule],
   controllers: [AppController],
   providers: [AppService],
 })

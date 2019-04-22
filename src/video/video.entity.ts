@@ -2,9 +2,9 @@ import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, Upd
 import { Section } from 'src/section/section.entity';
 import { Files } from 'src/files/files.entity';
 
-// We Offer a Full Range of Digital Marketing Services!
+
 @Table
-export class FullRange extends Model<FullRange> {
+export class Video extends Model<Video> {
   @AutoIncrement
   @Unique
   @Column
@@ -18,20 +18,8 @@ export class FullRange extends Model<FullRange> {
   @Column
   title: string;
 
-  @Column
-  subtitle: string;
-
   @Column(DataType.TEXT)
   description: string;
-
-  /* position signifies the position of file
-     position=1 => Left
-     position=2 => Right
-     position=3 => Centre
-  */
-  @Column
-  position:number; 
-  
 
   @ForeignKey(()=>Files)
   @Column

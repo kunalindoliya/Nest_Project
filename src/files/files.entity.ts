@@ -1,8 +1,9 @@
 //Model of all the files in the Website
-import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, ForeignKey, BelongsTo, HasOne } from 'sequelize-typescript';
 import { Matrix } from 'src/matrix/matrix.entity';
 import { Section } from 'src/section/section.entity';
 import { FullRange } from 'src/full-range/full-range.entity';
+import { Video } from 'src/video/video.entity';
 
 @Table
 export class Files extends Model<Files> {
@@ -25,17 +26,14 @@ export class Files extends Model<Files> {
   @Column
   size: number;
 
-  @ForeignKey(()=>Matrix)
-  matrixId:string
+  @HasMany(()=>Matrix)
+  matrix:Matrix[];
 
-  @BelongsTo(()=>Matrix)
-  matrix: Matrix;
+  @HasOne(()=>FullRange)
+  fullRange:FullRange;
 
-  @ForeignKey(()=>FullRange)
-  fullRangeId:string
-
-  @BelongsTo(()=>FullRange)
-  fullRange: FullRange;
+  @HasOne(()=>Video)
+  video: Video;
 
   @CreatedAt
   createdAt;
