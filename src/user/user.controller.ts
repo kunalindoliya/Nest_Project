@@ -7,10 +7,7 @@ const puid=new Puid(true);
 @Controller('user')
 export class UserController {
     constructor(private userService: UserService){};
-    @Get('/login')
-    getLogin() {
-      // Render login page
-    }
+    
     @Get('/data')
     getUsers() {
       return this.userService.findAll();
@@ -24,7 +21,7 @@ export class UserController {
   
     @Post('/addUser')
     postAddUser(@Body() user: User) {
-      user.id=puid.generate(true);
+      user.id=puid.generate();
       this.userService.adduser(user);
     }
 }
