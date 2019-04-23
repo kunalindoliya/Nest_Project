@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Get, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import * as Puid from 'puid';
 import { Page } from './page.entity';
 const puid=new Puid(true);
@@ -16,7 +16,7 @@ export class PageController {
         pageDetails.id=id;
         //service method
     }
-    @Delete('/delete/:id')
+    @Delete('/deletePage/:id')
     deletePage(@Param('id') id){
         //service method
     }
